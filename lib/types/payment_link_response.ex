@@ -3,18 +3,11 @@ defmodule BoldApi.Types.PaymentLinkResponse do
   PaymentLink response struct.
   """
 
-  @type payload :: %{
+  @type t :: %__MODULE__{
           payment_link: String.t(),
           url: String.t()
         }
 
-  @type errors :: list(String.t())
-
-  @type t :: %__MODULE__{
-          payload: payload(),
-          errors: errors()
-        }
-
-  @enforce_keys [:payload, :errors]
-  defstruct [:payload, :errors]
+  @enforce_keys []
+  defstruct [:payment_link, :url]
 end

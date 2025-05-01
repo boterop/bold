@@ -1,18 +1,13 @@
 defmodule BoldApi do
   @moduledoc """
-  Documentation for `BoldApi`.
+  Bold API client.
   """
 
-  @doc """
-  Hello world.
+  alias BoldApi.Adapters.PaymentGateway
 
-  ## Examples
+  @adapter Application.compile_env(:bold_api, :adapter, PaymentGateway)
 
-      iex> BoldApi.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
+  defdelegate create_link(params), to: @adapter
+  defdelegate get_link(id), to: @adapter
+  defdelegate list_methods(), to: @adapter
 end

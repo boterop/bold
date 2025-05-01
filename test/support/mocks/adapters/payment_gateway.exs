@@ -38,7 +38,7 @@ defmodule BoldApi.Mocks.Adapters.PaymentGateway do
   end
 
   @impl true
-  def list_methods() do
+  def list_methods do
     {:ok,
      %PaymentMethodsResponse{
        list: %{"PSE" => %{"max" => 10_000_000, "min" => 1000}}

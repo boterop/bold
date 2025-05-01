@@ -1,7 +1,7 @@
 defmodule BoldApiTest do
   use ExUnit.Case
 
-  alias BoldApi.Types.{PaymentLinkResponse, PaymentLinkRequest}
+  alias BoldApi.Types.{PaymentLinkRequest, PaymentLinkResponse}
 
   test "api key error" do
     assert_raise RuntimeError, fn ->

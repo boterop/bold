@@ -1,4 +1,8 @@
 defmodule BoldApi.Ports.PaymentGateway do
+  @moduledoc """
+  Behaviour for payment gateways.
+  """
+
   alias BoldApi.Types.{
     Error,
     PaymentLinkRequest,

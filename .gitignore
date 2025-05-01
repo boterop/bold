@@ -21,3 +21,6 @@ bold_api-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Dialyzer
+/priv/plts/

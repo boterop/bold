@@ -47,7 +47,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
 
   @impl true
   @spec list_methods() :: {:ok, PaymentMethodsResponse.t()} | {:errors, list(Error.t())}
-  def list_methods() do
+  def list_methods do
     "#{@url}/payment_methods"
     |> get()
     |> methods_response()

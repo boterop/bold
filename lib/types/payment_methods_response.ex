@@ -4,15 +4,10 @@ defmodule BoldApi.Types.PaymentMethodsResponse do
   """
 
   @type payment_method :: {String.t(), %{min: integer(), max: integer()}}
-  @type payload :: %{
-          payment_methods: list(payment_method())
-        }
-  @type errors :: list(String.t())
   @type t :: %__MODULE__{
-          payload: payload(),
-          errors: errors()
+          list: %{String.t() => payment_method}
         }
 
   @enforce_keys []
-  defstruct [:payload, :errors]
+  defstruct [:list]
 end

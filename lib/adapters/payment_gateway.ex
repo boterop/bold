@@ -160,4 +160,16 @@ defmodule BoldApi.Adapters.PaymentGateway do
 
     {:ok, methods}
   end
+
+  defp methods_response({:ok, %Tesla.Env{status: _code, body: %{"errors" => errors}}}) do
+    {:errors, errors}
+  end
+
+  defp methods_response({:ok, _}) do
+    {:errors, [:request_failed]}
+  end
+
+  defp methods_response({:error, reason}) do
+    {:errors, [reason]}
+  end
 end

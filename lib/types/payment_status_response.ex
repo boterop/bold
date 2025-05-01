@@ -19,7 +19,7 @@ defmodule BoldApi.Types.PaymentStatusResponse do
           description: String.t(),
           payment_method: String.t(),
           transaction_id: String.t(),
-          amount_type: :open | :closed,
+          amount_type: :open | :close,
           is_sandbox: boolean()
         }
 

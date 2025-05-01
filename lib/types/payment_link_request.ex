@@ -12,7 +12,7 @@ defmodule BoldApi.Types.PaymentLinkRequest do
         }
 
   @type t :: %__MODULE__{
-          amount_type: :open | :closed,
+          amount_type: :open | :close,
           amount: amount(),
           description: String.t(),
           expiration_date: integer(),

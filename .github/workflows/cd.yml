@@ -28,8 +28,8 @@ jobs:
       - uses: erlef/setup-beam@5304e04ea2b355f03681464e683d92e3b2f18451 # v1.18.2
         id: beam
         with:
-          otp-version: matrix.otp
-          elixir-version: matrix.elixir
+          otp-version: ${{ matrix.otp }}
+          elixir-version: ${{ matrix.elixir }}
 
       - uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4.2.1
         with:

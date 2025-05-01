@@ -3,8 +3,6 @@ defmodule BoldApi.Adapters.PaymentGateway do
   HTTP client to communicate with the Bold API.
   """
 
-  @behaviour BoldApi.Ports.PaymentGateway
-
   use Tesla
 
   alias BoldApi.Config
@@ -16,6 +14,8 @@ defmodule BoldApi.Adapters.PaymentGateway do
     PaymentMethodsResponse,
     PaymentStatusResponse
   }
+
+  @behaviour BoldApi.Ports.PaymentGateway
 
   plug(Tesla.Middleware.BaseUrl, Config.api_url())
 

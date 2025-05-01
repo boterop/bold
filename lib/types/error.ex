@@ -3,5 +3,5 @@ defmodule BoldApi.Types.Error do
   Error struct.
   """
 
-  @type t :: list(%{String.t() => String.t()}) | list(atom()) | list(String.t())
+  @type t :: %{String.t() => String.t()} | atom() | String.t()
 end

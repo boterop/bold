@@ -30,7 +30,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
 
   @impl true
   @spec create_link(PaymentLinkRequest.t()) ::
-          {:ok, PaymentLinkResponse.t()} | {:errors, Error.t()}
+          {:ok, PaymentLinkResponse.t()} | {:errors, list(Error.t())}
   def create_link(params) when is_map(params) do
     @url
     |> post(link_request(params))
@@ -38,7 +38,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
   end
 
   @impl true
-  @spec get_link(String.t()) :: {:ok, PaymentStatusResponse.t()} | {:errors, Error.t()}
+  @spec get_link(String.t()) :: {:ok, PaymentStatusResponse.t()} | {:errors, list(Error.t())}
   def get_link(id) when is_binary(id) do
     "#{@url}/#{id}"
     |> get()
@@ -46,7 +46,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
   end
 
   @impl true
-  @spec list_methods() :: {:ok, PaymentMethodsResponse.t()} | {:errors, Error.t()}
+  @spec list_methods() :: {:ok, PaymentMethodsResponse.t()} | {:errors, list(Error.t())}
   def list_methods() do
     "#{@url}/payment_methods"
     |> get()
@@ -85,7 +85,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
   defp link_request(_), do: %{}
 
   @spec link_response({:ok, Tesla.Env.t()}) ::
-          {:ok, PaymentLinkResponse.t()} | {:errors, Error.t()}
+          {:ok, PaymentLinkResponse.t()} | {:errors, list(Error.t())}
   defp link_response({:ok, %Tesla.Env{status: 200, body: %{"payload" => body}}}) do
     link = %PaymentLinkResponse{payment_link: body["payment_link"], url: body["url"]}
 
@@ -105,7 +105,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
   end
 
   @spec status_response({:ok, Tesla.Env.t()} | {:error, Tesla.Env.t()}) ::
-          {:ok, PaymentStatusResponse.t()} | {:error, Error.t()}
+          {:ok, PaymentStatusResponse.t()} | {:error, list(Error.t())}
   defp status_response({:ok, %Tesla.Env{status: 200, body: body}}) do
     amount_type =
       case body["amount_type"] do
@@ -152,7 +152,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
   end
 
   @spec methods_response({:ok, Tesla.Env.t()} | {:error, Tesla.Env.t()}) ::
-          {:ok, PaymentMethodsResponse.t()} | {:error, Error.t()}
+          {:ok, PaymentMethodsResponse.t()} | {:error, list(Error.t())}
   defp methods_response({:ok, %Tesla.Env{status: 200, body: %{"payload" => body}}}) do
     methods = %PaymentMethodsResponse{
       list: body["payment_methods"]

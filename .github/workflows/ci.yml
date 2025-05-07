@@ -62,5 +62,31 @@ jobs:
       - name: Run dialyzer
         run: mix dialyzer --format short
 
-      - name: Run Tests
-        run: mix test
+      - name: Run Tests and Coverage
+        run: mix coveralls.github --parallel --flagname otp-${{ matrix.otp }}-elixir-${{ matrix.elixir }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  finish:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
+      - name: Set BUILD_NUMBER for Pull Request event
+        if: github.event_name == 'pull_request'
+        run: echo "BUILD_NUMBER=${{ github.event.pull_request.head.sha }}-PR-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
+      - name: Set BUILD_NUMBER for Push event
+        if: github.event_name == 'push'
+        run: echo "BUILD_NUMBER=${{ github.sha }}" >> $GITHUB_ENV
+
+      - name: Coveralls Finished
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILD_NUMBER: ${{ env.BUILD_NUMBER }}
+        run: |
+          curl -k "https://coveralls.io/webhook" -d "repo_token=$GITHUB_TOKEN&repo_name=$GITHUB_REPOSITORY&payload[build_num]=$BUILD_NUMBER&payload[status]=done"

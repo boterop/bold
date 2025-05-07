@@ -26,6 +26,41 @@ config :bold,
   key: "YOUR_BOLD_API_KEY"
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/bold>.
+## Usage
+
+```elixir
+# Create a close payment link
+{:ok, %Bold.Types.PaymentLinkResponse{}} =
+  %Bold.Types.PaymentLinkRequest{
+    amount_type: :close,
+    description: "Payment for order order-id",
+    payer_email: "test@example.org",
+    amount: %{
+      currency: "COP",
+      tip_amount: 0,
+      taxes: [%{value: 1597, base: 8403, type: "VAT"}],
+      total_amount: 10000
+    },
+    callback_url: "https://example.org/return",
+    expiration_date: nil,
+    image_url: "https://example.org/image.png"
+  } |> Bold.create_link()
+
+# Create an open payment link
+{:ok, %Bold.Types.PaymentLinkResponse{}} =
+  %Bold.Types.PaymentLinkRequest{
+    amount_type: :open,
+    description: 'Payment for order order-id',
+    payer_email: 'test@example.org',
+    callback_url: 'https://example.org/return',
+    expiration_date: nil,
+  } |> Bold.create_link()
+
+# Get a payment link
+{:ok, %Bold.Types.PaymentStatusResponse{}} =
+  Bold.get_link("LNK_3N09Z1EP0Y")
+
+# List payment methods
+{:ok, %Bold.Types.PaymentMethodsResponse{}} =
+  Bold.list_methods()
+```

@@ -4,7 +4,7 @@ defmodule BoldApiTest do
   alias BoldApi.Types.{PaymentLinkRequest, PaymentLinkResponse}
 
   setup do
-    Application.put_env(:bold_api, :key, nil)
+    Application.put_env(:bold, :key, nil)
   end
 
   test "api key error" do
@@ -15,7 +15,7 @@ defmodule BoldApiTest do
 
   describe "mocked adapter" do
     setup do
-      Application.put_env(:bold_api, :key, "secret")
+      Application.put_env(:bold, :key, "secret")
     end
 
     test "create link" do

@@ -1,3 +1,3 @@
 import Config
 
-config :bold_api, adapter: BoldApi.Adapters.PaymentGateway
+config :bold, adapter: BoldApi.Adapters.PaymentGateway

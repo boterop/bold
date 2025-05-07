@@ -5,7 +5,7 @@ defmodule BoldApi do
 
   alias BoldApi.Adapters.PaymentGateway
 
-  @adapter Application.compile_env(:bold_api, :adapter, PaymentGateway)
+  @adapter Application.compile_env(:bold, :adapter, PaymentGateway)
 
   defdelegate create_link(params), to: @adapter
   defdelegate get_link(id), to: @adapter

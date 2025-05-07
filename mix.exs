@@ -3,11 +3,11 @@ defmodule BoldApi.MixProject do
 
   @version "0.1.0"
   @name "Bold"
-  @github "https://github.com/boterop/bold_api"
+  @github "https://github.com/boterop/bold"
 
   def project do
     [
-      app: :bold_api,
+      app: :bold,
       name: @name,
       version: @version,
       elixir: "~> 1.18",
@@ -18,7 +18,7 @@ defmodule BoldApi.MixProject do
       source_url: @github,
       docs: docs(),
       dialyzer: [
-        plt_add_apps: [:bold_api, :ex_unit, :jason],
+        plt_add_apps: [:bold, :ex_unit, :jason],
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
       ],
       test_coverage: [tool: ExCoveralls],

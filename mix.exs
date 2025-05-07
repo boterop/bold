@@ -1,13 +1,31 @@
 defmodule BoldApi.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+  @github "https://github.com/boterop/bold_api"
+
   def project do
     [
       app: :bold_api,
-      version: "0.1.0",
+      name: "Bold",
+      version: @version,
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description: description(),
+      package: package(),
+      source_url: @github,
+      dialyzer: [
+        plt_add_apps: [:bold_api, :ex_unit, :jason],
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+      ],
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -21,8 +39,26 @@ defmodule BoldApi.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:tesla, "~> 1.14"},
+      {:jason, "~> 1.4"},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.18.5", only: :test}
+    ]
+  end
+
+  defp description do
+    """
+        An Elixir library for interacting with the Bold API, providing seamless integration to manage payments efficiently.
+    """
+  end
+
+  defp package do
+    [
+      description: description(),
+      files: ["lib", "config", "mix.exs", "README*", "LICENSE"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => @github, "Changelog" => "#{@github}/blob/main/CHANGELOG.md"}
     ]
   end
 end

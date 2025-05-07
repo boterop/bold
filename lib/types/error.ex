@@ -1,4 +1,4 @@
-defmodule BoldApi.Types.Error do
+defmodule Bold.Types.Error do
   @moduledoc """
   Error struct.
   """

@@ -1,4 +1,4 @@
-defmodule BoldApi.Types.Tax do
+defmodule Bold.Types.Tax do
   @moduledoc """
   Tax struct.
   """

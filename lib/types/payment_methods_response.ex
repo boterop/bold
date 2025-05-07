@@ -1,4 +1,4 @@
-defmodule BoldApi.Types.PaymentMethodsResponse do
+defmodule Bold.Types.PaymentMethodsResponse do
   @moduledoc """
   PaymentMethods response struct.
   """

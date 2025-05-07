@@ -1,18 +1,18 @@
-defmodule BoldApi.Mocks.Adapters.PaymentGateway do
+defmodule Bold.Mocks.Adapters.PaymentGateway do
   @moduledoc """
   Mock payment gateway adapter.
   """
 
-  alias BoldApi.Config
+  alias Bold.Config
 
-  alias BoldApi.Types.{
+  alias Bold.Types.{
     PaymentLinkRequest,
     PaymentLinkResponse,
     PaymentMethodsResponse,
     PaymentStatusResponse
   }
 
-  @behaviour BoldApi.Ports.PaymentGateway
+  @behaviour Bold.Ports.PaymentGateway
 
   @id "LNK_3N09Z1EP0Y"
 

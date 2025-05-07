@@ -101,7 +101,7 @@ defmodule Bold.Adapters.PaymentGateway do
   end
 
   defp link_response({:error, reason}) do
-    {:errors, IO.inspect(reason)}
+    {:errors, reason}
   end
 
   @spec status_response({:ok, Tesla.Env.t()} | {:error, Tesla.Env.t()}) ::

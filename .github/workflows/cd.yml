@@ -1,8 +1,10 @@
 name: CD
 
 on:
-  release:
-    types: [published]
+  pull_request:
+    branches:
+      - main
+    types: closed
 
 permissions:
   contents: read
@@ -42,4 +44,4 @@ jobs:
         run: mix deps.get
 
       - name: Publish
-        run: HEX_API_KEY=$HEX_API_KEY mix hex.publish --yes
+        run: HEX_API_KEY=$HEX_API_KEY mix hex.publish --yes --replace

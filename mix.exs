@@ -1,4 +1,4 @@
-defmodule BoldApi.MixProject do
+defmodule Bold.MixProject do
   use Mix.Project
 
   @version "0.1.0"

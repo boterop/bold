@@ -1,13 +1,13 @@
-defmodule BoldApi.Adapters.PaymentGateway do
+defmodule Bold.Adapters.PaymentGateway do
   @moduledoc """
   HTTP client to communicate with the Bold API.
   """
 
   use Tesla
 
-  alias BoldApi.Config
+  alias Bold.Config
 
-  alias BoldApi.Types.{
+  alias Bold.Types.{
     Error,
     PaymentLinkRequest,
     PaymentLinkResponse,
@@ -15,7 +15,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
     PaymentStatusResponse
   }
 
-  @behaviour BoldApi.Ports.PaymentGateway
+  @behaviour Bold.Ports.PaymentGateway
 
   plug(Tesla.Middleware.BaseUrl, Config.api_url())
 

@@ -1,9 +1,9 @@
-defmodule BoldApi do
+defmodule Bold do
   @moduledoc """
   Bold API client.
   """
 
-  alias BoldApi.Adapters.PaymentGateway
+  alias Bold.Adapters.PaymentGateway
 
   @adapter Application.compile_env(:bold, :adapter, PaymentGateway)
 

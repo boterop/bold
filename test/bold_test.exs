@@ -1,7 +1,7 @@
-defmodule BoldApiTest do
+defmodule BoldTest do
   use ExUnit.Case
 
-  alias BoldApi.Types.{PaymentLinkRequest, PaymentLinkResponse}
+  alias Bold.Types.{PaymentLinkRequest, PaymentLinkResponse}
 
   setup do
     Application.put_env(:bold, :key, nil)
@@ -9,7 +9,7 @@ defmodule BoldApiTest do
 
   test "api key error" do
     assert_raise RuntimeError, fn ->
-      %PaymentLinkRequest{amount_type: :open} |> BoldApi.create_link()
+      %PaymentLinkRequest{amount_type: :open} |> Bold.create_link()
     end
   end
 
@@ -20,7 +20,7 @@ defmodule BoldApiTest do
 
     test "create link" do
       {:ok, %PaymentLinkResponse{}} =
-        %PaymentLinkRequest{amount_type: :open} |> BoldApi.create_link()
+        %PaymentLinkRequest{amount_type: :open} |> Bold.create_link()
     end
   end
 end

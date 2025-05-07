@@ -1,8 +1,8 @@
-defmodule BoldApi.Types.PaymentStatusResponse do
+defmodule Bold.Types.PaymentStatusResponse do
   @moduledoc """
   PaymentMethods response struct.
   """
-  alias BoldApi.Types.Tax
+  alias Bold.Types.Tax
 
   @type status :: :active | :processing | :paid | :rejected | :cancelled | :expired
 

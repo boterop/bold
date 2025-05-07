@@ -1,4 +1,4 @@
-# BoldApi
+# Bold
 
 An Elixir library for interacting with the [Bold API](https://bold.co/).
 

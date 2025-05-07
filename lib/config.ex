@@ -1,4 +1,4 @@
-defmodule BoldApi.Config do
+defmodule Bold.Config do
   @moduledoc """
   Application configuration.
   """

@@ -2,12 +2,13 @@ defmodule BoldApi.MixProject do
   use Mix.Project
 
   @version "0.1.0"
+  @name "Bold"
   @github "https://github.com/boterop/bold_api"
 
   def project do
     [
       app: :bold_api,
-      name: "Bold",
+      name: @name,
       version: @version,
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
@@ -15,6 +16,7 @@ defmodule BoldApi.MixProject do
       description: description(),
       package: package(),
       source_url: @github,
+      docs: docs(),
       dialyzer: [
         plt_add_apps: [:bold_api, :ex_unit, :jason],
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
@@ -43,7 +45,15 @@ defmodule BoldApi.MixProject do
       {:jason, "~> 1.4"},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.18.5", only: :test}
+      {:excoveralls, "~> 0.18.5", only: :test},
+      {:ex_doc, "~> 0.37.3", only: :dev, runtime: false}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      extras: ["README.md", "CHANGELOG.md"]
     ]
   end
 

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        otp: ["24"]
+        otp: ["27"]
         elixir: ["1.18.3"]
     env:
       HEX_API_KEY: ${{ secrets.HEX_API_KEY }}

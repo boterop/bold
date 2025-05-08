@@ -1,13 +1,13 @@
-defmodule BoldApi.Adapters.PaymentGateway do
+defmodule Bold.Adapters.PaymentGateway do
   @moduledoc """
   HTTP client to communicate with the Bold API.
   """
 
   use Tesla
 
-  alias BoldApi.Config
+  alias Bold.Config
 
-  alias BoldApi.Types.{
+  alias Bold.Types.{
     Error,
     PaymentLinkRequest,
     PaymentLinkResponse,
@@ -15,7 +15,7 @@ defmodule BoldApi.Adapters.PaymentGateway do
     PaymentStatusResponse
   }
 
-  @behaviour BoldApi.Ports.PaymentGateway
+  @behaviour Bold.Ports.PaymentGateway
 
   plug(Tesla.Middleware.BaseUrl, Config.api_url())
 
@@ -100,8 +100,8 @@ defmodule BoldApi.Adapters.PaymentGateway do
     {:errors, [reason]}
   end
 
-  defp link_response({:error, _}) do
-    {:errors, :request_failed}
+  defp link_response({:error, reason}) do
+    {:errors, reason}
   end
 
   @spec status_response({:ok, Tesla.Env.t()} | {:error, Tesla.Env.t()}) ::

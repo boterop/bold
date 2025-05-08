@@ -1,3 +1,3 @@
 import Config
 
-config :bold_api, adapter: BoldApi.Mocks.Adapters.PaymentGateway
+config :bold, adapter: Bold.Mocks.Adapters.PaymentGateway

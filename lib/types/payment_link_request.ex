@@ -1,8 +1,8 @@
-defmodule BoldApi.Types.PaymentLinkRequest do
+defmodule Bold.Types.PaymentLinkRequest do
   @moduledoc """
   PaymentLink request struct.
   """
-  alias BoldApi.Types.Tax
+  alias Bold.Types.Tax
 
   @type amount :: %{
           currency: String.t(),

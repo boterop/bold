@@ -1,11 +1,11 @@
-defmodule BoldApi do
+defmodule Bold do
   @moduledoc """
   Bold API client.
   """
 
-  alias BoldApi.Adapters.PaymentGateway
+  alias Bold.Adapters.PaymentGateway
 
-  @adapter Application.compile_env(:bold_api, :adapter, PaymentGateway)
+  @adapter Application.compile_env(:bold, :adapter, PaymentGateway)
 
   defdelegate create_link(params), to: @adapter
   defdelegate get_link(id), to: @adapter
